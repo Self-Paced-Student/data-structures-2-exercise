@@ -44,10 +44,7 @@ Your data structures are stored as separate files in the `scripts` folder.
 ## Extra credits
 
 - To prevent collisions, make your hash table self-resizing. It should double in size as soon as 75% of the available space has been filled, and shrink to half when space usage falls below 25%.
-- Add functionality to sets, so that:
-  - A value can belong to more than one set, and for each value you can say what sets it belongs to.
-  - You can find the intersection of multiple sets (a list of the values that they share).
-  - In the two tasks above there’s a trade-off between space (memory) and time (computation), can you figure out the possible implementations?
+- Add functionality to sets, so that you can find the intersection between two of them (i.e. a list of the values they share), using the method `A.intersection(B)`. There’s a trade-off between space (memory) and time (computation), can you figure out the possible implementations?
 - Read about the following data structures and implement any that attract your interest:
   - [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure))
   - [Binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree)
