@@ -7,7 +7,6 @@ const Tree = require('../scripts/tree.js');
 const HashTable = require('../scripts/hash-table.js');
 
 describe('Set', function () {
-
   let set;
 
   beforeEach(function () {
@@ -29,6 +28,11 @@ describe('Set', function () {
     set.remove.should.be.a('function');
   });
 
+  it('the class should provide a "intersection()" method', function () {
+    set.should.not.have.ownProperty('intersection');
+    set.intersection.should.be.a('function');
+  });
+
   it('should add values, and check that the set contains them', function () {
     set.contains('hello').should.be.false;
     set.add('hello').should.be.true;
@@ -48,10 +52,21 @@ describe('Set', function () {
     set.contains('world').should.be.true;
   });
 
+  it('should check and return intersection values or null if intersection is not found', () => {
+    should.not.exist(set.intersection([]));
+    set.add('hello');
+    set.add('world');
+    const set2 = new Set()
+    set2.add("hello")
+    set.intersection(set2).should.deep.equal(['hello']);
+    set2.add('world')
+    set.intersection(set2).should.deep.equal(['hello', 'world']);
+    const set3 = new Set(); 
+    should.equal(set.intersection(set3), null);
+  });
 });
 
 describe('Tree', function () {
-
   let tree;
 
   beforeEach(function () {
@@ -86,11 +101,9 @@ describe('Tree', function () {
     tree.contains('today').should.be.true;
     tree.contains('tomorrow').should.be.true;
   });
-
 });
 
 describe('Hash table', function () {
-
   let hashTable;
 
   beforeEach(function () {
@@ -149,5 +162,4 @@ describe('Hash table', function () {
     hashTable.remove('hello').should.be.true;
     should.equal(hashTable.retrieve('hello'), undefined);
   });
-
 });
