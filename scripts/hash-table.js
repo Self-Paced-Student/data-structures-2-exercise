@@ -1,6 +1,6 @@
 'use strict';
 
-const helpers = require('./hash-table-helpers');
+const helpers = require('./hash-table-helpers.js');
 
 // These are your helpers, they're used to generate
 // the storage and get the hash respectively. For more

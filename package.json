@@ -1,6 +1,6 @@
 {
   "name": "codeworks-data-structures-2-exercise",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "A Codeworks exercise to train students",
   "scripts": {
     "test": "mocha",

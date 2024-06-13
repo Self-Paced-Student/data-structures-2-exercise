@@ -1,5 +1,5 @@
 'use strict';
 
-function Set () {}
+function Set() {}
 
 module.exports = Set;

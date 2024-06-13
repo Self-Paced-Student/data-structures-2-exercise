@@ -7,31 +7,37 @@
 // and throws an error if you try to access indexes outside of the storage size.
 
 // For example:
-// let storage = Storage(5);
+// let storage = new Storage(5);
 // storage.set(3, {key: 'hello', value: 'world'});
 // storage.get(3); -> {key: 'hello', value: 'world'}
-// storage.get(5); -> undefined
-// storage.get(8); -> Error
-exports.Storage = function (size) {
+// storage.get(4); -> undefined
+// storage.get(5); -> Error
 
-  const storage = [];
+class Storage {
+  #storage;
 
-  return Object.freeze({
-    get: function (index) {
-      checkLimit(index, size);
-      return getValue(storage, index);
-    },
-    set: function (index, value) {
-      checkLimit(index, size);
-      setValue(storage, index, value);
-    }
-  });
-
+  constructor (size) {
+    this.#storage = [];
+    this.size = size;
+    Object.freeze(this);
+  }
+  get (index) {
+    checkLimit(index, this.size);
+    return getValue(this.#storage, index);
+  }
+  set (index, value) {
+    checkLimit(index, this.size);
+    setValue(this.#storage, index, value);
+  }
 };
 
+exports.Storage = Storage;
+
 function checkLimit (index, size) {
-  if (typeof index !== 'number') throw new Error('The first argument must be a number');
-  if (index >= size) throw new Error('You are trying to access an over-the-limit index');
+  if (typeof index !== 'number')
+    throw new Error('The first argument must be a number');
+  if (index >= size)
+    throw new Error('You are trying to access an over-the-limit index');
 }
 
 function getValue (storage, index) {
@@ -48,7 +54,7 @@ function setValue (storage, index, value) {
 exports.hash = function (str, max) {
   let res = 0;
   for (let i = 0; i < str.length; i++) {
-    res = (res<<5) + res + str.charCodeAt(i);
+    res = (res << 5) + res + str.charCodeAt(i);
     res = res & res; // Convert to 32bit integer
     res = Math.abs(res);
   }
